@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react'
+import { Spin } from 'antd';
 import { useRouter } from 'next/navigation';
 import ConfirmHeader from '../Components/ConfirmHeader'
 import axios from "axios"
@@ -22,12 +23,13 @@ const ConfirmBooking = (props: Props) => {
 
   const [CurrentStep, setCurrentStep] = useState(0)
   const [AddressTrigger,setAddressTrigger]=useState(false)
+  const [Loading,setLoading]=useState(false)
   const router = useRouter()
 
   const placeBooking = async () => {
 
     try {
-
+      setLoading(true)
       const userid = await GetUser()
       const Booking = GetBookingDet()
       if (Booking.bookingpayMethod.paymentMethod === "Online-pay") {
@@ -79,7 +81,7 @@ const ConfirmBooking = (props: Props) => {
       // localStorage.removeItem("_dgBkDT");
       // localStorage.removeItem("_dgBkADRS");
 
-
+      setLoading(false)
     } catch (error) {
       console.log(error)
     }
@@ -146,6 +148,11 @@ const ConfirmBooking = (props: Props) => {
 
   return (
     <>
+    <Spin
+    size='large'
+    fullscreen={true}
+    spinning={Loading}
+    />
       <ConfirmHeader />
 
       <div className='md:hidden'>
