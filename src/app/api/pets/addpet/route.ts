@@ -1,5 +1,5 @@
 import { ConnectDB } from "@/config/dbconfig";
-import { NextResponse } from "next/server";
+import { NextResponse,NextRequest } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import User from "@/models/usersModel";
 import dotenv from "dotenv";
@@ -31,7 +31,7 @@ async function uploadFileToS3(fileBuffer: Buffer, fileName: string) {
     }
 }
 
-export async function POST(request: NextResponse) {
+export async function POST(request: NextRequest) {
     try {
         // Connect to the database
         await ConnectDB();
