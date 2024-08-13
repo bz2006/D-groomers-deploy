@@ -17,7 +17,7 @@ const Login = (props: Props) => {
 
     const HandleLogin = async () => {
         try {
-            const res = await axios.post("api/auth/login", { email: email, password: password });
+            const res = await axios.post("/api/auth/login", { email: email, password: password });
             const redPath = localStorage.getItem("redirect");
             const path = redPath ? JSON.parse(redPath) : null;
             localStorage.setItem("_dgUSR", JSON.stringify(res.data.user));

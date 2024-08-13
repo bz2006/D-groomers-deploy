@@ -1,7 +1,6 @@
-import React from 'react'
-import Image from "next/image";
-import Header from '../../Components/Header'
-import Footer from '../../Components/Footer'
+import React, { useEffect, useState } from 'react';
+import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
 import axios from 'axios';
 import SBRenderer from './renderer';
 
@@ -9,53 +8,63 @@ type Props = {
   params: {
     id: string;
   };
-}
-type Breed = {
-  _id: string,
-  breedname: string,
-  createdAt: string,
-  updatedAt: string,
-  __v: number,
-}
+};
 
-const GetBreed = async (id: string) => {
+type GroomingPackage = {
+  pid: string;
+  breedname: string;
+  img: string;
+  packageName: string;
+  packageDesc: string;
+  services: string[];
+  charge: number;
+};
 
-  try {
+type GroomingPackages = {
+  puppy: GroomingPackage[];
+  teenage: GroomingPackage[];
+  adult: GroomingPackage[];
+};
 
-    const res = await axios.get(`/api/breeds/getsinglebreed/${id}`)
-    return res.data['data']
+type Breeds = {
+  groomingPackages: GroomingPackages;
+  breedname: string;
+  img: string;
+};
 
-  } catch (error) {
-    console.log(error);
+const SingleBreed = ({ params }: Props) => {
+  const [breed, setBreed] = useState<Breeds | null>(null);
 
-  }
-
-}
-
-const SingleBreed = async (params: Props) => {
-
-  const id = params.params.id
-  let loaded = false
-  let breed
-  if (loaded === false) {
-    breed = await GetBreed(id)
-    if (breed) {
-      loaded = true
+  const fetchBreed = async (id: string) => {
+    try {
+      const res = await axios.get(`/api/breeds/getsinglebreed/${id}`);
+      setBreed(res.data['data']);
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
+
+  useEffect(() => {
+    if (params.id) {
+      fetchBreed(params.id);
+    }
+  }, [params.id]);
 
   return (
     <>
-      <Header bgcolor={"bg-white"}/>
+      <Header bgcolor={"bg-white"} />
 
       <section className="bg-white py-12">
-        <SBRenderer
-          breeds={breed}
-        />
+        {breed ? (
+          <SBRenderer breeds={breed} />
+        ) : (
+          <p>Loading...</p>
+        )}
       </section>
+
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default SingleBreed
+export default SingleBreed;
