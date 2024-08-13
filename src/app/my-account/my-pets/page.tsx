@@ -48,7 +48,7 @@ const MyPets = (props: Props) => {
 
         try {
             const id = await GetUser()
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/pets/getallpets/${id}`)
+            const res = await axios.get(`/api/pets/getallpets/${id}`)
             setPets(res.data["data"])
         } catch (error) {
             console.log(error);
@@ -74,7 +74,7 @@ const MyPets = (props: Props) => {
                 formData.append('image', image);
             }
 
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/pets/addpet`, formData, {
+            const res = await axios.post("/api/pets/addpet", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -100,7 +100,7 @@ const MyPets = (props: Props) => {
                 dob: DOB,
                 breed: breed
             }
-            const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/pets/updatepet`, { userid: id, upid: Updateid, newDetails: newDetails })
+            const res = await axios.put("/api/pets/updatepet", { userid: id, upid: Updateid, newDetails: newDetails })
             ClosedetModel()
             GetPets()
             message.success(`${name} details updated successfully`)
@@ -116,7 +116,7 @@ const MyPets = (props: Props) => {
 
         try {
             const id = await GetUser()
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/pets/deletepet`, { userid: id, upid: Updateid })
+            const res = await axios.post("/api/pets/deletepet", { userid: id, upid: Updateid })
             ClosedetModel()
             GetPets()
             setUpdateid("")

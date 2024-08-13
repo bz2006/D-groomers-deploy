@@ -96,7 +96,7 @@ const AddressStep = (props: Props) => {
 
         try {
             const id = await GetUser()
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/address/newaddress`, { userid: id, NewAddress: NewAddress })
+            const res = await axios.post("/api/user/address/newaddress", { userid: id, NewAddress: NewAddress })
             handleCancel()
             GetAddress()
             message.success('Address added successfully')
@@ -111,7 +111,7 @@ const AddressStep = (props: Props) => {
 
         try {
             const id = await GetUser()
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/user/address/getalladdress/${id}`)
+            const res = await axios.get(`/api/user/address/getalladdress/${id}`)
             setallAdrs(res.data["data"])
             setLoading(false)
         } catch (error) {
@@ -139,7 +139,7 @@ const AddressStep = (props: Props) => {
         try {
             const id = await GetUser()
             const adid = selectedaddress[0]._id;
-            const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/user/address/updateaddress`, { userid: id, adid: adid, newAddress: selectedaddress })
+            const res = await axios.put("/api/user/address/updateaddress", { userid: id, adid: adid, newAddress: selectedaddress })
             handleeditCancel()
             GetAddress()
             message.success("Address updated successfully")
@@ -154,7 +154,7 @@ const AddressStep = (props: Props) => {
 
     const fetchLocations = async () => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/manage/get-locations`);
+            const res = await axios.get("/api/manage/get-locations");
             setLocations(res.data.data.map((loc: { _id: string; district: string }) => ({ value: loc._id, label: loc.district })));
             console.log(res.data.data)
         } catch (error) {

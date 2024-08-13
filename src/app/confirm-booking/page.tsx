@@ -40,7 +40,7 @@ const ConfirmBooking = (props: Props) => {
         if (verification.data.data.verified === true) {
           Booking.bookingamount.paid = true;
 
-          await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings/new-booking`, {
+          await axios.post("/api/bookings/new-booking", {
             userid: userid,
             bookingpackage: Booking.bookingPKG,
             bookingadrs: Booking.bookingadrs,
@@ -48,7 +48,7 @@ const ConfirmBooking = (props: Props) => {
             bookingamount: Booking.bookingamount,
             bookingslot: Booking.bookingslot
           })
-          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings/reserve-slot`, {
+          await axios.put("/api/bookings/reserve-slot", {
             tid:Booking.bookingslot.tid
           })
           router.push("/my-account/schedules")
@@ -59,7 +59,7 @@ const ConfirmBooking = (props: Props) => {
 
       } else if (Booking.bookingpayMethod.paymentMethod === "On-groom-pay") {
 
-       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings/new-booking`, {
+       await axios.post("/api/bookings/new-booking", {
           userid: userid,
           bookingpackage: Booking.bookingPKG,
           bookingadrs: Booking.bookingadrs,
@@ -67,7 +67,7 @@ const ConfirmBooking = (props: Props) => {
           bookingamount: Booking.bookingamount,
           bookingslot: Booking.bookingslot
         })
-         await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings/reserve-slot`, {
+         await axios.put("/api/bookings/reserve-slot", {
           tid:Booking.bookingslot.tid
         })
         router.push("/my-account/schedules")

@@ -4,7 +4,7 @@ const HandleVerifyPayment = async (razorpay_order_id:string, razorpay_payment_id
     // Load Razorpay script and handle payment once it's loaded
     
 
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/verify-payment`, { 
+    const response = await axios.post("/api/payments/verify-payment", { 
         razorpay_order_id:razorpay_order_id, 
         razorpay_payment_id:razorpay_payment_id, 
         razorpay_signature:razorpay_signature

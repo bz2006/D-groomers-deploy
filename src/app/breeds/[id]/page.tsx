@@ -22,7 +22,7 @@ const GetBreed = async (id: string) => {
 
   try {
 
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/breeds/getsinglebreed/${id}`)
+    const res = await axios.get(`/api/breeds/getsinglebreed/${id}`)
     return res.data['data']
 
   } catch (error) {

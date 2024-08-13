@@ -7,7 +7,7 @@ const HandlePayment = async (Bamount: number) => {
     // Load Razorpay script and handle payment once it's loaded
     loadRazorpayScript();
 
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/new-payment`, { amount: Bamount });
+    const response = await axios.post("/api/payments/new-payment", { amount: Bamount });
     const { id, currency, amount: orderAmount } = response.data.data;
 
     console.log(response.data.data, "ll")

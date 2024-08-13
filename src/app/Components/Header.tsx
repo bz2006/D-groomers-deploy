@@ -58,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ bgcolor }) => {
     try {
       document.cookie = "_grt5634=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
       localStorage.removeItem('_dgUSR');
-      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`);
+      await axios.get("/api/auth/logout");
       router.push('/');
       router.refresh();
     } catch (error) {

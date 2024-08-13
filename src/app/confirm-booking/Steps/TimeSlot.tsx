@@ -99,7 +99,7 @@ const TimeSlotSteps = (props: Props) => {
         try {
             let location = loc
 
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/manage/get-singlelocation/${location}`);
+            const res = await axios.get(`/api/manage/get-singlelocation/${location}`);
             setAllMonths(res.data.data);
             return (res.data.data)
 

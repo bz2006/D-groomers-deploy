@@ -98,7 +98,7 @@ const BookingDetails = (props: Props) => {
             if (verification.data.data.verified === true) {
                 GetBooking({ paid: true })
 
-                const BKpay_status = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings/change-paymentstatus`, {
+                const BKpay_status = await axios.put("/api/bookings/change-paymentstatus", {
                     bookingid: booking?.id,
                     status: true
                 })
@@ -117,7 +117,7 @@ const BookingDetails = (props: Props) => {
 
         try {
 
-            const BKpay_status = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings/cancel-booking`, {
+            const BKpay_status = await axios.put("/api/bookings/cancel-booking", {
                 bookingid: booking?.id,
                 status: "Cancelled"
             })

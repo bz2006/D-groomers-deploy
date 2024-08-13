@@ -64,7 +64,7 @@ const Slots = (props: Props) => {
 
 
     try {
-      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/manage/update-slots`,
+      const res = await axios.put("/api/manage/update-slots",
         { locid: selectedLocation?._id, selectedMid: selectedMid, slotid: selectedSlot?._id, NewSlots: selectedSlot })
       GetSingleLoc(selectedLocation?.district)
     } catch (error) {
@@ -80,7 +80,7 @@ const Slots = (props: Props) => {
 
   const fetchLocations = async () => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/manage/get-locations`);
+      const res = await axios.get("/api/manage/get-locations");
       setLocations(res.data.data.map((loc: { _id: string; district: string }) => ({ value: loc._id, label: loc.district })));
       console.log(res.data.data)
     } catch (error) {
@@ -92,7 +92,7 @@ const Slots = (props: Props) => {
     try {
       let location = loc ? loc : selectedLocation
 
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/manage/get-singlelocation/${location}`);
+      const res = await axios.get(`/api/manage/get-singlelocation/${location}`);
       setSelectedLocation(res.data.data);
       console.log(res.data.data)
 

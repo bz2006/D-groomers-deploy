@@ -87,7 +87,7 @@ const Schedules = (props: Props) => {
         try {
             const userid = GetUser();
             if (userid) {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings/user-bookings/${userid}`);
+                const response = await axios.get(`/api/bookings/user-bookings/${userid}`);
                 console.log(response.data.data)
                 setBookings(response.data.data);
                 setLoading(false);

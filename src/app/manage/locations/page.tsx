@@ -24,7 +24,7 @@ const Locations = (props: Props) => {
 
     const fetchLocations = async () => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/manage/get-locations`);
+            const res = await axios.get("/api/manage/get-locations");
             setLocations(res.data.data);
         } catch (error) {
             console.error('Error fetching locations:', error);
@@ -33,7 +33,7 @@ const Locations = (props: Props) => {
 
     const addLocation = async () => {
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/manage/add-location`, {
+            const res = await axios.post("/api/manage/add-location", {
                 district: newLocation.district,
                 genSlots: 2,
                 defavslt: 5
