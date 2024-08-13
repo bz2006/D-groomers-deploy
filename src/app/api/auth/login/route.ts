@@ -5,9 +5,10 @@ import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import JWT from "jsonwebtoken";
 
-dotenv.config();
+
 
 export async function POST(request: NextRequest) {
+    dotenv.config();
     await ConnectDB();
     try {
         const reqBody = await request.json();
