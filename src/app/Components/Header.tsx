@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import {
   Disclosure,
 } from '@headlessui/react';
@@ -9,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Navigator from './DivNav';
 import type { MenuProps } from 'antd';
-import { Drawer, Button, Dropdown, Menu } from 'antd';
+import { Drawer, Button, Dropdown, Spin } from 'antd';
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -37,6 +36,7 @@ const Header: React.FC<HeaderProps> = ({ bgcolor }) => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+  const [Loading, setLoading] = useState(false);
 
   const GetUser = async () => {
     try {
@@ -56,11 +56,13 @@ const Header: React.FC<HeaderProps> = ({ bgcolor }) => {
 
   const HandleLogout = async () => {
     try {
+      setLoading(true)
       document.cookie = "_grt5634=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
       localStorage.removeItem('_dgUSR');
       await axios.get("/api/auth/logout");
       router.push('/');
       router.refresh();
+      setLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -96,6 +98,13 @@ const Header: React.FC<HeaderProps> = ({ bgcolor }) => {
   ];
 
   return (
+    <>
+    <Spin
+    size='large'
+    fullscreen={true}
+    spinning={Loading}
+    />
+   
     <Disclosure as="nav" className={bgcolor ? bgcolor : 'bg-transparent'}>
       {({ open }: { open: boolean }) => (
         <>
@@ -172,6 +181,7 @@ const Header: React.FC<HeaderProps> = ({ bgcolor }) => {
         </>
       )}
     </Disclosure>
+    </>
   );
 };
 

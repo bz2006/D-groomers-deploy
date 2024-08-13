@@ -1,5 +1,4 @@
 "use client";
-import { ConnectDB } from "@/config/dbconfig";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Input, Spin } from "antd";
@@ -11,9 +10,8 @@ type Props = {};
 
 const Login = (props: Props) => {
   const router = useRouter();
-  ConnectDB();
-  const [email, setemail] = useState("bz@gmail.com");
-  const [password, setpassword] = useState("b");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
   const [Loading, setLoading] = useState(false);
 
   const HandleLogin = async () => {
@@ -29,6 +27,8 @@ const Login = (props: Props) => {
       router.push(path);
       router.refresh();
       setLoading(false)
+      setemail("")
+      setpassword("")
     } catch (error) {
       console.log("error", error);
     }

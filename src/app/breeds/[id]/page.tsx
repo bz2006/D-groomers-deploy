@@ -4,6 +4,7 @@ import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import axios from 'axios';
 import SBRenderer from './renderer';
+import Loading from './loading';
 
 type Props = {
   params: {
@@ -59,7 +60,7 @@ const SingleBreed = ({ params }: Props) => {
         {breed ? (
           <SBRenderer breeds={breed} />
         ) : (
-          <p>Loading...</p>
+          <Loading/>
         )}
       </section>
 
