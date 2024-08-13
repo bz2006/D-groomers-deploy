@@ -1,4 +1,3 @@
-import { url } from 'inspector'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
@@ -7,16 +6,14 @@ export function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
 
     const isPublicPath = path === "/login" || path === "/signup"
-
-    const isPrivatePath = path === '/my-account'
+    const isPrivatePath = path === '/my-account' || path === '/confirm-booking'
 
     const token = request.cookies.get("_grt5634")?.value || ''
 
     console.log(isPrivatePath, path);
 
-
     if (isPublicPath && token) {
-        return NextResponse.redirect(new URL('/', request.nextUrl))
+        return NextResponse.next()
     }
 
     if (isPrivatePath && token) {
@@ -31,7 +28,6 @@ export function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
     matcher: [
-
         '/login',
         '/signup',
         '/my-account',

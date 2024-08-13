@@ -8,6 +8,7 @@ type Props = {
     cancelDate: string;
     groomedDate: string;
     Gpackage: GroomingPackage
+    img:string;
     bookingadrs: Address;
     amount: Amount;
     slot: Slot
@@ -54,11 +55,11 @@ type Sdate = {
     year: string;
 }
 
-const OrderSection: React.FC<Props> = ({ id, bookingid, bookingdate, Gpackage, amount, bookingadrs, slot, status, cancelDate, groomedDate }) => {
+const OrderSection: React.FC<Props> = ({ id, bookingid, bookingdate, Gpackage, amount, bookingadrs, slot, status, cancelDate, groomedDate,img }) => {
     const { dayName, dayNumber, month, year } = slot.date;
     const scheduledDate = `${month} ${dayNumber}, ${year}`;
     const grandTotal = amount.package + amount.fee
-
+console.log(img)
     const SetBooking = () => {
         localStorage.setItem("Singlebooking", JSON.stringify({ id, status, bookingid, bookingdate, amount, bookingadrs, Gpackage, slot, cancelDate, groomedDate }));
     }
@@ -123,8 +124,8 @@ const OrderSection: React.FC<Props> = ({ id, bookingid, bookingdate, Gpackage, a
                     <div className="lx zg ccj">
                         <div className="nv rx uw adn aea aiq bzg cad">
                             <img
-                                src="https://www.odysseyhouse.com.au/wordpress/wp-content/uploads/2018/02/golden-retriever-SQUARE@.jpg"
-                                alt="Garment bag with two layers of grey and tan zipper pouches for folded shirts and pants."
+                                src={img}
+                                alt=""
                                 className="pn tu aqk aql"
                             />
                         </div>

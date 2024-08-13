@@ -11,6 +11,7 @@ type bookingprops = {
     userid: string;
     bookingid: string;
     bookingdate: string;
+    img:string;
     status: string;
     cancelDate: string;
     groomedDate: string;
@@ -55,6 +56,7 @@ type Address = {
 type GroomingPackage = {
     pid: string;
     breedname: string;
+    img:string;
     packageName: string;
     packageDesc: string;
     services: string[];
@@ -109,6 +111,7 @@ const Schedules = (props: Props) => {
                             <OrderSection
                                 key={sch._id}
                                 id={sch._id}
+                                img={sch.package.img}
                                 bookingid={sch.bookingid}
                                 bookingdate={sch.bookingdate}
                                 Gpackage={sch.package}

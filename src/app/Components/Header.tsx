@@ -60,6 +60,7 @@ const Header: React.FC<HeaderProps> = ({ bgcolor }) => {
       localStorage.removeItem('_dgUSR');
       await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`);
       router.push('/');
+      router.refresh();
     } catch (error) {
       console.log(error);
     }

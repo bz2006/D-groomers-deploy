@@ -10,7 +10,6 @@ export async function GET(request: NextRequest) {
         const id = url.pathname.split('/').pop();
         
         const data = await Breeds.findOne({ _id: id })
-        console.log(data);
         
         if(data){
             return NextResponse.json({

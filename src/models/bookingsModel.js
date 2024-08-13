@@ -7,6 +7,9 @@ const packageSchema = new mongoose.Schema({
     breedname: {
         type: String,
     },
+    img: {
+        type: String,
+    },
     packageDesc: {
         type: String,
     },

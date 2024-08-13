@@ -8,6 +8,7 @@ import { Segmented } from 'antd';
 type GroomingPackage = {
     pid: string;
     breedname:string;
+    img:string;
     packageName: string;
     packageDesc: string;
     services: string[];
@@ -23,6 +24,7 @@ type GroomingPackages = {
 type Breeds = {
     groomingPackages: GroomingPackages;
     breedname: string;
+    img:string;
 };
 
 type Props = {
@@ -40,7 +42,7 @@ const SBRenderer: React.FC<Props> = ({ breeds }) => {
             setCurrentAgePack(breeds.groomingPackages.puppy);
         }
     }, []);
-
+    
     const filterByPid = (pid: string) => {
         if (Details) {
             // Search in all grooming packages for the specific pid
@@ -52,6 +54,7 @@ const SBRenderer: React.FC<Props> = ({ breeds }) => {
                 if (foundPackage) {
                     // Add breedname: breeds.breedname to the array
                     foundPackage.breedname = breeds.breedname;
+                    foundPackage.img=breeds.img
                     break;
                 }
             }

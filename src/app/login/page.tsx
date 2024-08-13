@@ -22,6 +22,7 @@ const Login = (props: Props) => {
             const path = redPath ? JSON.parse(redPath) : null;
             localStorage.setItem("_dgUSR", JSON.stringify(res.data.user));
             router.push(path);
+            router.refresh();
         } catch (error) {
             console.log("error", error);
         }
