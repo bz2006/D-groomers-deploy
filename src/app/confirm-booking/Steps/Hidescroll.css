@@ -1,0 +1,9 @@
+@media (min-width: 768px) {
+    .CBhide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .CBhide-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  }
