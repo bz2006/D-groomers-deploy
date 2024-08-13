@@ -40,7 +40,7 @@ const BreedsPage = () => {
     const fetchBreeds = async () => {
       
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/breeds/getallbreeds`);
+        const res = await axios.get("/api/breeds/getallbreeds");
         setBreeds(res.data.data);
         setFilteredBreeds(res.data.data);
         setLoading(false);
