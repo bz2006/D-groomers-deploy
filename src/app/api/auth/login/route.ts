@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
         const { email, password } = reqBody;
+        console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
         const user = await User.findOne({ email: email });
 
